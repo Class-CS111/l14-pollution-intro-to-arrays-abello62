@@ -1,6 +1,6 @@
-// YOUR NAME:
+// YOUR NAME: ALEJANDRO BELLO
 // COLLABORATORS:
-// LAST MODIFIED DATE: 
+// LAST MODIFIED DATE: 03/30/2025
 /*
 Yearly Global Atmospheric CO₂ Levels (parts per million)
 2001: 371.32 ppm
@@ -32,7 +32,43 @@ class Main
 
   public static void main(String[] args) 
   {
-		// DECLARATION SECTION
+		// DECLARATION SECTION + INITIALIZATION
+    int size = 20; 
+    double[] co2Levels = new double[size];
+    int[] years = new int[size];
+
+    //2001: 371.32 ppm
+    //2002: 373.45 ppm
+    co2Levels[0] = 371.32; //2001
+    co2Levels[1] = 373.45; //2002
+    co2Levels[2] = 375.98;
+    co2Levels[3] = 377.70;
+    co2Levels[4] = 379.98;
+    co2Levels[5] = 382.09;
+    co2Levels[6] = 384.03;
+    co2Levels[7] = 385.83;
+    co2Levels[8] = 387.64;
+    co2Levels[9] = 390.10;
+    co2Levels[10] = 391.85;
+    co2Levels[11] = 394.06;
+    co2Levels[12] = 396.74;
+    co2Levels[13] = 398.87;
+    co2Levels[14] = 401.01; 
+    co2Levels[15] = 404.41;
+    co2Levels[16] = 406.76;
+    co2Levels[17] = 408.72;
+    co2Levels[18] = 411.66;
+    co2Levels[19] = 414.24; 
+
+    //int currentYear = 2001; 
+    for(int i = 0; i < years.length; i++) {
+      years[i] = 2001 + i; 
+      //currentYear++; 
+
+    }
+
+
+
 
 		// INITIALIZATION SECTION
 
@@ -43,12 +79,48 @@ class Main
 		// OUTPUT SECTION
   
     //Explanation of oil drum units
-    System.out.println("\nData displayed for each year begins at 360 ppm.\nEach additional oil drum (🛢 ) represents an additional 10 ppm.\n");
+    //System.out.println("\nData displayed for each year begins at 360 ppm.\nEach additional oil drum (🛢 ) represents an additional 10 ppm.\n");
 
     //Column titles of graph
     System.out.print("Year");
     UtilityBelt.printCentered(55,"CO₂ in Atmosphere (ppm)");
 
+    /*for(int i = 0; i < size; i++) {
+      System.out.printf("Year %d = %.2f ppm %n", years[i], co2Levels[i]);*/
+
+      /*Main.printBar(co2Levels[0]);
+      Main.printBar(co2Levels[1]);*/
+      
+      /*for(int i = 0; i < size; i++) { 
+        System.out.print(years[i] + " ");
+        Main.printBar(co2Levels[i]);
+      }*/
+      Main.printGraph(co2Levels, years);
+      double averageLevels = co2Levels[size-1] - co2Levels[0];
+      System.out.printf("From 2001 to 2020, the average atmospheric CO₂ levels across the globe has grown %.2f ppm.%n", averageLevels);
+    }
+
+    public static void printGraph(double[] dataValues, int[] yearValues) { 
+      for(int i = 0; i < dataValues.length; i++) { 
+        System.out.print(yearValues[i] + " ");
+        Main.printBar(dataValues[i]);
+      }
+    }
+
+    /**
+     * Prints a single horizontal bar with one emoji for every one whole # over 360 and 
+        displays the actual value to right oif the bar 
+     * @param data the CO2 level for a year to draw as a bar graph, 
+       MUST be >= 360
+     */
+    public static void printBar(double data) {
+      int numDrums = (int)(data - 360); 
+      //System.out.println("Num drums = " + numDrums);    
+      for (int i = 0; i < numDrums; i++) {
+          System.out.print("🛢 ");
+      }
+      //System.out.println(" " + data);
+      System.out.printf(" %.2f%n", data); 
   }
 
 }
